@@ -4,15 +4,33 @@
 # Python
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
 .venv/
 venv/
+*.egg-info/
+dist/
+build/
 
 # ADK
 .adk/
 
+# IDE and tools
+.qodo/
+.claude/
+.idea/
+.vscode/
+*.swp
+*.swo
+
 # macOS
 .DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
 
 # Temporary files
 tmp/
 *.log
+*.tmp
