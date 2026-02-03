@@ -1,15 +1,19 @@
 import os
 import requests
+from pathlib import Path
 from typing import Optional
 from dotenv import load_dotenv
+
+# Load .env from this agent's directory
+env_path = Path(__file__).parent / '.env'
+load_dotenv(dotenv_path=env_path)
+
 from tavily import TavilyClient
 from google.adk.agents import Agent
 from google.adk.agents.callback_context import CallbackContext
 from google.adk.models.llm_request import LlmRequest
 from google.adk.models.llm_response import LlmResponse
 from google.genai import types
-
-load_dotenv()
 
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")

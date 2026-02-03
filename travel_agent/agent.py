@@ -1,6 +1,12 @@
 # Multi-Agent Travel Planner using Google ADK
 import os
+from pathlib import Path
 from dotenv import load_dotenv
+
+# Load .env from this agent's directory
+env_path = Path(__file__).parent / '.env'
+load_dotenv(dotenv_path=env_path)
+
 from google.adk.agents import Agent
 from tavily import TavilyClient
 
@@ -9,9 +15,6 @@ warnings.filterwarnings("ignore")
 
 import logging
 logging.basicConfig(level=logging.ERROR)
-
-# Load environment variables
-load_dotenv()
 
 # API Keys
 google_api_key = os.environ.get("GOOGLE_API_KEY")
@@ -24,7 +27,7 @@ if not tavily_key:
     raise ValueError("TAVILY_API_KEY is not set in the environment variables")
 
 # Model constant
-MODEL = "gemini-2.5-flash"
+MODEL = "gemini-2.0-flash"
 
 # Tavily client
 tavily_client = TavilyClient(api_key=tavily_key)

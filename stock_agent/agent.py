@@ -1,7 +1,14 @@
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Load .env from this agent's directory
+env_path = Path(__file__).parent / '.env'
+load_dotenv(dotenv_path=env_path)
+
 from google.adk.agents import LlmAgent, SequentialAgent
 from google.adk.tools import google_search
 
-MODEL = "gemini-2.5-flash"
+MODEL = "gemini-2.0-flash"
 
 # Sub-agent 1: Greets user and asks for stock ticker
 ticker_input_agent = LlmAgent(
