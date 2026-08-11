@@ -1,134 +1,162 @@
-# Gemini ADK Tutorial
+# WSQ — Develop Multi AI Agent Applications with Gemini Agent ADK
 
-A collection of example agents built with [Google's Agent Development Kit (ADK)](https://google.github.io/adk-docs/).
+**Course Code:** TGS-2024042961
+**Conducted by:** Tertiary Infotech Academy Pte Ltd (UEN 201200696W)
+**Duration:** 2 days · 16 training hours
 
-## Prerequisites
+Courseware and hands-on lab repository for the WSQ course *Develop Multi AI Agent Applications
+with Gemini Agent ADK*, built on Google's open-source [Agent Development Kit (ADK)](https://google.github.io/adk-docs/)
+and the Gemini model family.
 
-- Python 3.13+
-- Google API Key (for Gemini models)
-- Optional: OpenWeather API Key (for weather tools)
-- Optional: Tavily API Key (for web search)
+---
 
-## Installation
+## Learning Outcomes
+
+| | Outcome |
+|---|---|
+| **LO1** | Analyze the range of LLM applications using Generative AI (GAI) and identify their industrial use cases |
+| **LO2** | Establish Google Gemini GAI designs and assess improvements on engineering processes |
+| **LO3** | Develop LLM applications and assess its feasibility |
+| **LO4** | Evaluate the performance effectiveness of Retrieval Augmented Generation (RAG) |
+
+---
+
+## Course Topics
+
+| Topic | Title | Labs |
+|---|---|---|
+| 1 | Overview of Agentic AI in Gemini ADK | 1–4 |
+| 2 | Build A Multi Agent App with Gemini ADK | 5–12 |
+| 3 | Build Agentic AI RAG in Gemini ADK | 13–15 |
+| 4 | Build an Agentic AI App with Gemini Agent ADK and Streamlit | 16–18 |
+
+---
+
+## Quick Start
+
+**Prerequisites:** Python 3.13+, [uv](https://docs.astral.sh/uv/), and a free Gemini API key from
+[Google AI Studio](https://aistudio.google.com).
 
 ```bash
-# Clone the repository
-git clone https://github.com/alfredang/gemini_tutorial.git
-cd gemini_tutorial
-
-# Install dependencies using uv
+git clone https://github.com/tertiarycourses/TGS-2024042961-Develop-Multi-AI-Agent-Applications-with-Gemini-Agent-ADK.git
+cd TGS-2024042961-Develop-Multi-AI-Agent-Applications-with-Gemini-Agent-ADK/labs
 uv sync
-
-# Or using pip
-pip install google-adk python-dotenv requests tavily-python streamlit
 ```
 
-## Configuration
-
-Create a `.env` file in each agent directory with your API keys:
+Create a `.env` file in the `labs/` folder:
 
 ```env
 GOOGLE_GENAI_USE_VERTEXAI=0
 GOOGLE_API_KEY=your-google-api-key
-OPENWEATHER_API_KEY=your-openweather-key
-TAVILY_API_KEY=your-tavily-key
+OPENWEATHER_API_KEY=your-openweather-key   # optional, tool labs
+TAVILY_API_KEY=your-tavily-key             # optional, search labs
 ```
 
-## Running Agents
+> **Never commit your `.env` file or API keys.** It is git-ignored in this repository.
 
-Use the ADK CLI to run any agent:
+Run any agent:
 
 ```bash
-# Terminal mode
-adk run <agent_directory>
-
-# Web UI mode
-adk web <agent_directory>
+uv run adk run <agent_folder>   # terminal chat
+uv run adk web                  # browser IDE at http://localhost:8000
 ```
 
-## Agent Examples
+---
 
-| Agent | Description |
-|-------|-------------|
-| `basic_agent` | Simple banking assistant agent |
-| `multi_tools_agent` | Agent with OpenWeather and Tavily search tools |
-| `agent_session` | Demonstrates session management with Runner |
-| `agent_interact` | Shows agent interaction patterns with event handling |
-| `agent_handoff` | Multi-agent handoff between joke generator and translator |
-| `agent_guardrail` | Agent with `before_model_callback` guardrail to block keywords |
-| `agent_structured_output` | Pydantic-based structured output (Recipe example) |
-| `agent_mcp` | MCP (Model Context Protocol) with StreamableHTTP |
-| `agent_mcp_sse` | MCP with SSE (Server-Sent Events) standard |
-| `agent_model` | Agent with different model configurations |
-| `transport_agent` | Sequential workflow for Singapore transport planning |
-| `transport_agent_yaml` | YAML-based agent configuration (experimental) |
-| `transport_agent_streamlit` | Streamlit web interface for transport agent |
-| `stock_agent` | Hierarchical multi-agent system for stock analysis |
-| `travel_agent` | Multi-agent travel planner with specialized sub-agents |
-| `tutor_agent` | Multi-agent tutoring system with subject-specific tutors |
+## Labs
 
-## Key Concepts
+| # | Lab | Agent folder | Topic |
+|---|---|---|---|
+| 1 | Set Up the Gemini ADK Environment and Get an API Key | — | 1 |
+| 2 | Build Your First ADK Agent — A Retail Banking Assistant | `basic_agent` | 1 |
+| 3 | Give an Agent Tools — Live Weather and Web Search | `multi_tools_agent` | 1 |
+| 4 | Swap the Model — Running an ADK Agent on a Non-Gemini LLM | `agent_model` | 1 |
+| 5 | Give an Agent Memory — Sessions, State and the Runner | `agent_session` | 2 |
+| 6 | Inspect the Agent Loop — Events, Tool Calls and Final Responses | `agent_interact` | 2 |
+| 7 | Multi-Agent Handoff — Joke Generator to Translator | `agent_handoff` | 2 |
+| 8 | Hierarchical Multi-Agent System — The Tutor Agent | `tutor_agent` | 2 |
+| 9 | Sequential Workflow Agent — Singapore Transport Route Planner | `transport_agent` | 2 |
+| 10 | Add a Guardrail — Blocking Unsafe Requests with a Callback | `agent_guardrail` | 2 |
+| 11 | Structured Output — Forcing Valid JSON with Pydantic | `agent_structured_output` | 2 |
+| 12 | Connect External Tools with MCP — StreamableHTTP and SSE | `agent_mcp`, `agent_mcp_sse` | 2 |
+| 13 | Load, Split and Embed Documents into a Vector Store | `agent_rag` | 3 |
+| 14 | Build the Agentic RAG Agent — Retrieval as a Tool | `agent_rag` | 3 |
+| 15 | Evaluate RAG Performance — Retrieval Quality and Groundedness | `agent_rag` | 3 |
+| 16 | Declarative Agents — Configuring a Multi-Agent System in YAML | `transport_agent_yaml` | 4 |
+| 17 | Ship the Agent as a Web App with Streamlit | `transport_agent_streamlit` | 4 |
+| 18 | Capstone — Design, Build and Assess Your Own Multi-Agent Application | your own | 4 |
 
-### Agent Types
+Additional example: `stock_agent` (sequential stock research) and `travel_agent`
+(multi-agent travel planner).
 
-| Agent Type | Description |
-|------------|-------------|
-| `Agent` / `LlmAgent` | Basic LLM-powered agent |
-| `SequentialAgent` | Runs sub-agents in sequence |
-| `ParallelAgent` | Runs sub-agents in parallel |
+---
 
-### Using Different Models
+## Core ADK Patterns
+
+**Define an agent**
 
 ```python
-# Gemini (default)
-model='gemini-2.0-flash'
+from google.adk.agents import Agent
 
-# OpenAI via LiteLlm
-from google.adk.models.lite_llm import LiteLlm
-model=LiteLlm(model="openai/gpt-4o-mini")
+root_agent = Agent(
+    model='gemini-2.0-flash',
+    name='root_agent',
+    description='A helpful assistant for user questions.',
+    instruction='Answer clearly and concisely.',
+)
 ```
 
-### Adding Tools
+**Add a tool** — the docstring and type hints are the contract the model reads.
 
 ```python
-from google.adk.tools import google_search
-
-# Built-in tools
-tools=[google_search]
-
-# Custom function tools
 def get_weather(city: str) -> dict:
+    """Retrieves the current weather for a specified city.
+
+    Args:
+        city (str): The name of the city.
+
+    Returns:
+        dict: status and result or error msg.
+    """
     return {"status": "success", "report": "..."}
 
-tools=[get_weather]
+agent = Agent(..., tools=[get_weather])
 ```
 
-### Sub-agents & Handoff
+**Multi-agent handoff**
 
 ```python
 root_agent = Agent(
-    name="root_agent",
-    sub_agents=[agent1, agent2],
-    instruction="Transfer to agent1 for task A, agent2 for task B"
+    name='root_agent',
+    sub_agents=[math_tutor_agent, physics_tutor_agent, history_tutor_agent],
+    instruction='Route each question to the right specialist.',
 )
 ```
 
-### Guardrails
+**Sequential workflow**
+
+```python
+from google.adk.agents import SequentialAgent
+
+workflow = SequentialAgent(
+    name='workflow_agent',
+    sub_agents=[input_agent, research_agent, report_agent],
+)
+```
+
+**Guardrail** — return `None` to allow, an `LlmResponse` to block.
 
 ```python
 def block_keyword_guardrail(callback_context, llm_request):
-    # Block requests containing certain keywords
-    if "BLOCK" in user_message.upper():
-        return LlmResponse(content=...)
+    if "BLOCK" in last_user_message.upper():
+        return LlmResponse(content=types.Content(
+            role="model", parts=[types.Part(text="I cannot process this request.")]))
     return None
 
-agent = Agent(
-    before_model_callback=block_keyword_guardrail,
-    ...
-)
+agent = Agent(..., before_model_callback=block_keyword_guardrail)
 ```
 
-### Structured Output
+**Structured output** — note an agent with `output_schema` cannot also use tools.
 
 ```python
 from pydantic import BaseModel
@@ -136,25 +164,43 @@ from pydantic import BaseModel
 class Recipe(BaseModel):
     title: str
     ingredients: list[str]
+    cooking_time: int
 
-agent = Agent(
-    output_schema=Recipe,
-    ...
-)
+agent = Agent(..., output_schema=Recipe)
 ```
 
-## Running with Streamlit
+---
 
-```bash
-cd transport_agent_streamlit
-streamlit run app.py
-```
+## Courseware
+
+| Artifact | File |
+|---|---|
+| Trainer Slides | `courseware/Develop Multi AI Agent Applications with Gemini Agent ADK-v1.1.pptx` |
+| Learner Slides (PDF) | `courseware/Develop Multi AI Agent Applications with Gemini Agent ADK-v1.1.pdf` |
+| Lesson Plan | `courseware/LP-Develop Multi AI Agent Applications with Gemini Agent ADK.docx` |
+| Learner Guide | `courseware/LG-Develop Multi AI Agent Applications with Gemini Agent ADK.docx` |
+| Learner Guide (Markdown) | `LG-Develop Multi AI Agent Applications with Gemini Agent ADK.md` |
+
+The **Learner Guide** carries the full step-by-step instructions for all 18 labs, plus reference
+sections on core ADK patterns, evaluating a RAG pipeline, and assessing the feasibility of an
+agent application.
+
+> The assessment set is confidential and is **not** published in this repository.
+
+---
 
 ## Resources
 
 - [Google ADK Documentation](https://google.github.io/adk-docs/)
-- [Google ADK GitHub](https://github.com/google/adk-python)
+- [Google AI Studio](https://aistudio.google.com) — free Gemini API keys
+- [Course page](https://www.tertiarycourses.com.sg/wsq-develop-multi-ai-agent-applications-with-gemini-agent-adk.html)
+- [LMS / TMS](https://lms-tms.tertiaryinfotech.com)
 
-## License
+## Support
 
-MIT
+**Tertiary Infotech Academy Pte Ltd** · UEN 201200696W
+Email: enquiry@tertiaryinfotech.com · Tel: +65 6100 0613 · [tertiarycourses.com.sg](https://www.tertiarycourses.com.sg)
+
+---
+
+© 2026 Tertiary Infotech Academy Pte Ltd. All rights reserved.
