@@ -67,27 +67,27 @@ uv run adk web                  # browser IDE at http://localhost:8000
 
 | # | Lab | Agent folder | Topic |
 |---|---|---|---|
-| 1 | Set Up the Gemini ADK Environment and Get an API Key | — | 1 |
-| 2 | Build Your First ADK Agent — A Retail Banking Assistant | `basic_agent` | 1 |
-| 3 | Give an Agent Tools — Live Weather and Web Search | `multi_tools_agent` | 1 |
-| 4 | Swap the Model — Running an ADK Agent on a Non-Gemini LLM | `agent_model` | 1 |
-| 5 | Give an Agent Memory — Sessions, State and the Runner | `agent_session` | 2 |
-| 6 | Inspect the Agent Loop — Events, Tool Calls and Final Responses | `agent_interact` | 2 |
-| 7 | Multi-Agent Handoff — Joke Generator to Translator | `agent_handoff` | 2 |
-| 8 | Hierarchical Multi-Agent System — The Tutor Agent | `tutor_agent` | 2 |
-| 9 | Sequential Workflow Agent — Singapore Transport Route Planner | `transport_agent` | 2 |
-| 10 | Add a Guardrail — Blocking Unsafe Requests with a Callback | `agent_guardrail` | 2 |
-| 11 | Structured Output — Forcing Valid JSON with Pydantic | `agent_structured_output` | 2 |
-| 12 | Connect External Tools with MCP — StreamableHTTP and SSE | `agent_mcp`, `agent_mcp_sse` | 2 |
-| 13 | Load, Split and Embed Documents into a Vector Store | `agent_rag` | 3 |
-| 14 | Build the Agentic RAG Agent — Retrieval as a Tool | `agent_rag` | 3 |
-| 15 | Evaluate RAG Performance — Retrieval Quality and Groundedness | `agent_rag` | 3 |
-| 16 | Declarative Agents — Configuring a Multi-Agent System in YAML | `transport_agent_yaml` | 4 |
-| 17 | Ship the Agent as a Web App with Streamlit | `transport_agent_streamlit` | 4 |
-| 18 | Capstone — Design, Build and Assess Your Own Multi-Agent Application | your own | 4 |
+| 1 | Set Up the Gemini ADK Environment and Get an API Key | `lab01` | 1 |
+| 2 | Build Your First ADK Agent — A Retail Banking Assistant | `lab02` | 1 |
+| 3 | Give an Agent Tools — Live Weather and Web Search | `lab03` | 1 |
+| 4 | Swap the Model — Running an ADK Agent on a Non-Gemini LLM | `lab04` | 1 |
+| 5 | Give an Agent Memory — Sessions, State and the Runner | `lab05` | 2 |
+| 6 | Inspect the Agent Loop — Events, Tool Calls and Final Responses | `lab06` | 2 |
+| 7 | Multi-Agent Handoff — Joke Generator to Translator | `lab07` | 2 |
+| 8 | Hierarchical Multi-Agent System — The Tutor Agent | `lab08` | 2 |
+| 9 | Sequential Workflow Agent — Singapore Transport Route Planner | `lab09` | 2 |
+| 10 | Add a Guardrail — Blocking Unsafe Requests with a Callback | `lab10` | 2 |
+| 11 | Structured Output — Forcing Valid JSON with Pydantic | `lab11` | 2 |
+| 12 | Connect External Tools with MCP — StreamableHTTP and SSE | `lab12` | 2 |
+| 13 | Load, Split and Embed Documents into a Vector Store | `lab13` | 3 |
+| 14 | Build the Agentic RAG Agent — Retrieval as a Tool | `lab14` | 3 |
+| 15 | Evaluate RAG Performance — Retrieval Quality and Groundedness | `lab15` | 3 |
+| 16 | Declarative Agents — Configuring a Multi-Agent System in YAML | `lab16` | 4 |
+| 17 | Ship the Agent as a Web App with Streamlit | `lab17` | 4 |
+| 18 | Capstone — Design, Build and Assess Your Own Multi-Agent Application | `lab18` | 4 |
 
-Additional example: `stock_agent` (sequential stock research) and `travel_agent`
-(multi-agent travel planner).
+Every lab is a **self-contained folder** holding its own agent script, data files and a
+`README.md` lab sheet. See [labs/LABS.md](labs/LABS.md) for the full index.
 
 ---
 
@@ -175,8 +175,8 @@ agent = Agent(..., output_schema=Recipe)
 
 | Artifact | File |
 |---|---|
-| Trainer Slides | `courseware/Develop Multi AI Agent Applications with Gemini Agent ADK-v1.1.pptx` |
-| Learner Slides (PDF) | `courseware/Develop Multi AI Agent Applications with Gemini Agent ADK-v1.1.pdf` |
+| Trainer Slides | `courseware/Develop Multi AI Agent Applications with Gemini Agent ADK-v1.2.pptx` |
+| Learner Slides (PDF) | `courseware/Develop Multi AI Agent Applications with Gemini Agent ADK-v1.2.pdf` |
 | Lesson Plan | `courseware/LP-Develop Multi AI Agent Applications with Gemini Agent ADK.docx` |
 | Learner Guide | `courseware/LG-Develop Multi AI Agent Applications with Gemini Agent ADK.docx` |
 | Learner Guide (Markdown) | `LG-Develop Multi AI Agent Applications with Gemini Agent ADK.md` |

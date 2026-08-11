@@ -1,6 +1,6 @@
 # Develop Multi AI Agent Applications with Gemini Agent ADK — Learner Guide
 
-**WSQ Course Code:** TGS-2024042961  |  **Conducted by:** Tertiary Infotech Academy Pte Ltd (UEN 201200696W)  |  **Version v1.1 · 11 August 2026**
+**WSQ Course Code:** TGS-2024042961  |  **Conducted by:** Tertiary Infotech Academy Pte Ltd (UEN 201200696W)  |  **Version v1.2 · 11 August 2026**
 
 ## Contents
 
@@ -191,7 +191,7 @@ EOF
 
 uv run adk --help prints the ADK usage banner listing the run, web and eval sub-commands, and no ModuleNotFoundError is raised.
 
-> **Note:** This lab has no single agent folder — follow the steps as written. The full lab sheet is at labs/guides/lab-01-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab01/ — read verify_setup.py alongside these steps. The lab sheet for this lab is at labs/lab01/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
@@ -204,21 +204,21 @@ Goal: Create a single-agent banking customer-service assistant. You learn the fo
 
 **What you'll build**
 
-basic_agent — a Gemini-powered banking assistant that answers general banking questions and refuses to handle PINs, OTPs or full account numbers.   (Tools: google-adk, Gemini 2.0 Flash, adk run, adk web.)
+lab02 — a Gemini-powered banking assistant that answers general banking questions and refuses to handle PINs, OTPs or full account numbers.   (Tools: google-adk, Gemini 2.0 Flash, adk run, adk web.)
 
 **Step-by-step**
 
 1. Inspect the agent definition and note the four required fields
 
    ```bash
-   cat basic_agent/agent.py
+   cat lab02/agent.py
    ```
 
 2. Identify model, name, description and instruction in the Agent(...) call
 3. Run the agent in the terminal
 
    ```bash
-   uv run adk run basic_agent
+   uv run adk run lab02
    ```
 
 4. Ask an in-scope question
@@ -239,14 +239,14 @@ basic_agent — a Gemini-powered banking assistant that answers general banking 
    uv run adk web
    ```
 
-7. Open http://localhost:8000, select basic_agent, and inspect the Events tab
+7. Open http://localhost:8000, select lab02, and inspect the Events tab
 8. Edit the instruction to make the assistant reply only in formal English, then re-run
 
 **Test it**
 
 The agent answers general banking questions helpfully but declines to disclose or request a PIN, OTP or full account number, and the Events tab shows one LLM call per turn.
 
-> **Note:** The agent source for this lab is in labs/basic_agent/agent.py — read it alongside these steps. The full lab sheet is at labs/guides/lab-02-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab02/ — read agent.py alongside these steps. The lab sheet for this lab is at labs/lab02/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
@@ -259,7 +259,7 @@ Goal: Add two Python function tools to an agent: a live OpenWeather lookup and a
 
 **What you'll build**
 
-multi_tools_agent — an agent that decides for itself whether a question needs the weather tool, the search tool, both, or neither.   (Tools: google-adk, OpenWeather API, Tavily API, Gemini 2.0 Flash.)
+lab03 — an agent that decides for itself whether a question needs the weather tool, the search tool, both, or neither.   (Tools: google-adk, OpenWeather API, Tavily API, Gemini 2.0 Flash.)
 
 **Step-by-step**
 
@@ -268,14 +268,14 @@ multi_tools_agent — an agent that decides for itself whether a question needs 
 3. Read the two tool functions and note the docstring, the typed arguments and the dict return
 
    ```bash
-   cat multi_tools_agent/agent.py
+   cat lab03/agent.py
    ```
 
 4. Observe that tools are attached with tools=[get_weather, tavily_search]
 5. Run the agent
 
    ```bash
-   uv run adk run multi_tools_agent
+   uv run adk run lab03
    ```
 
 6. Trigger the weather tool
@@ -307,7 +307,7 @@ multi_tools_agent — an agent that decides for itself whether a question needs 
 
 The weather question produces a get_weather function_call with a live temperature; the news question produces a tavily_search call; the arithmetic question produces no tool call at all.
 
-> **Note:** The agent source for this lab is in labs/multi_tools_agent/agent.py — read it alongside these steps. The full lab sheet is at labs/guides/lab-03-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab03/ — read agent.py alongside these steps. The lab sheet for this lab is at labs/lab03/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
@@ -320,14 +320,14 @@ Goal: Use the LiteLlm wrapper to point the same agent at an OpenAI model, then c
 
 **What you'll build**
 
-agent_model — one agent definition that runs on either Gemini or an OpenAI model by changing a single line.   (Tools: google-adk, LiteLlm, Gemini 2.0 Flash, OpenAI GPT-4.1-mini.)
+lab04 — one agent definition that runs on either Gemini or an OpenAI model by changing a single line.   (Tools: google-adk, LiteLlm, Gemini 2.0 Flash, OpenAI GPT-4.1-mini.)
 
 **Step-by-step**
 
 1. Inspect how LiteLlm wraps a non-Google model
 
    ```bash
-   cat agent_model/agent.py
+   cat lab04/agent.py
    ```
 
 2. Add your OpenAI key to labs/.env
@@ -339,7 +339,7 @@ agent_model — one agent definition that runs on either Gemini or an OpenAI mod
 3. Run the agent on the OpenAI model
 
    ```bash
-   uv run adk run agent_model
+   uv run adk run lab04
    ```
 
 4. Ask a reasoning question and note the answer quality and response time
@@ -348,7 +348,7 @@ agent_model — one agent definition that runs on either Gemini or an OpenAI mod
    Explain in three sentences why an agent needs tools.
    ```
 
-5. Edit agent_model/agent.py and replace the model with a Gemini model string
+5. Edit lab04/agent.py and replace the model with a Gemini model string
 
    ```bash
    model='gemini-2.0-flash'
@@ -357,7 +357,7 @@ agent_model — one agent definition that runs on either Gemini or an OpenAI mod
 6. Re-run the identical prompt on Gemini
 
    ```bash
-   uv run adk run agent_model
+   uv run adk run lab04
    ```
 
 7. Record quality, latency and cost for both in a comparison table
@@ -366,7 +366,7 @@ agent_model — one agent definition that runs on either Gemini or an OpenAI mod
 
 The same agent runs unchanged on both providers, and you can state which model you would choose for this workload and justify it on quality, latency and cost.
 
-> **Note:** The agent source for this lab is in labs/agent_model/agent.py — read it alongside these steps. The full lab sheet is at labs/guides/lab-04-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab04/ — read agent.py alongside these steps. The lab sheet for this lab is at labs/lab04/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
@@ -396,21 +396,21 @@ Goal: Drive an agent programmatically with a Runner and an InMemorySessionServic
 
 **What you'll build**
 
-agent_session — a multi-turn agent that answers follow-up questions using earlier context.   (Tools: google-adk, Runner, InMemorySessionService, google.genai types.)
+lab05 — a multi-turn agent that answers follow-up questions using earlier context.   (Tools: google-adk, Runner, InMemorySessionService, google.genai types.)
 
 **Step-by-step**
 
 1. Read how the session service, session and Runner are wired together
 
    ```bash
-   cat agent_session/agent.py
+   cat lab05/agent.py
    ```
 
 2. Note the APP_NAME, USER_ID and SESSION_ID that identify one conversation
 3. Run the session script
 
    ```bash
-   uv run python agent_session/agent.py
+   uv run python lab05/agent.py
    ```
 
 4. Ask an initial question that establishes context
@@ -432,7 +432,7 @@ agent_session — a multi-turn agent that answers follow-up questions using earl
 
 The follow-up 'And what about Osaka?' is understood as a weather question without repeating the word weather — and stops working when the session is removed.
 
-> **Note:** The agent source for this lab is in labs/agent_session/agent.py — read it alongside these steps. The full lab sheet is at labs/guides/lab-05-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab05/ — read agent.py alongside these steps. The lab sheet for this lab is at labs/lab05/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
@@ -445,20 +445,20 @@ Goal: Stream the Event objects the Runner emits and learn to read an agent trace
 
 **What you'll build**
 
-agent_interact — an instrumented agent that prints every event in its reasoning loop.   (Tools: google-adk, Runner, Events API, InMemorySessionService.)
+lab06 — an instrumented agent that prints every event in its reasoning loop.   (Tools: google-adk, Runner, Events API, InMemorySessionService.)
 
 **Step-by-step**
 
 1. Read the event-handling loop and find is_final_response()
 
    ```bash
-   cat agent_interact/agent.py
+   cat lab06/agent.py
    ```
 
 2. Run the interaction script
 
    ```bash
-   uv run python agent_interact/agent.py
+   uv run python lab06/agent.py
    ```
 
 3. Send a prompt that requires a tool
@@ -476,7 +476,7 @@ agent_interact — an instrumented agent that prints every event in its reasonin
 
 You can point to the function_call, the function_response and the final response in the trace, and state the number of LLM round-trips the turn consumed.
 
-> **Note:** The agent source for this lab is in labs/agent_interact/agent.py — read it alongside these steps. The full lab sheet is at labs/guides/lab-06-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab06/ — read agent.py alongside these steps. The lab sheet for this lab is at labs/lab06/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
@@ -489,14 +489,14 @@ Goal: Build a three-level agent hierarchy where a root agent hands off to a joke
 
 **What you'll build**
 
-agent_handoff — a root agent that produces an English joke and its Chinese translation through two automatic handoffs.   (Tools: google-adk, sub_agents, Gemini 2.0 Flash.)
+lab07 — a root agent that produces an English joke and its Chinese translation through two automatic handoffs.   (Tools: google-adk, sub_agents, Gemini 2.0 Flash.)
 
 **Step-by-step**
 
 1. Read the three agent definitions and the sub_agents chain
 
    ```bash
-   cat agent_handoff/agent.py
+   cat lab07/agent.py
    ```
 
 2. Note that the description field is what the parent reads to decide on a handoff
@@ -506,7 +506,7 @@ agent_handoff — a root agent that produces an English joke and its Chinese tra
    uv run adk web
    ```
 
-4. Select agent_handoff and request a joke
+4. Select lab07 and request a joke
 
    ```bash
    Tell me a joke
@@ -521,7 +521,7 @@ agent_handoff — a root agent that produces an English joke and its Chinese tra
 
 One 'Tell me a joke' request yields an English joke followed by a Chinese translation, and the Events tab shows two transfer_to_agent calls.
 
-> **Note:** The agent source for this lab is in labs/agent_handoff/agent.py — read it alongside these steps. The full lab sheet is at labs/guides/lab-07-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab07/ — read agent.py alongside these steps. The lab sheet for this lab is at labs/lab07/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
@@ -534,18 +534,18 @@ Goal: Build a tutoring system where one root agent routes each question to a mat
 
 **What you'll build**
 
-tutor_agent — a coordinator with three subject specialists that routes by topic.   (Tools: google-adk, sub_agents, coordinator pattern.)
+lab08 — a coordinator with three subject specialists that routes by topic.   (Tools: google-adk, sub_agents, coordinator pattern.)
 
 **Step-by-step**
 
 1. Read the three specialist agents and the root coordinator
 
    ```bash
-   cat tutor_agent/agent.py
+   cat lab08/agent.py
    ```
 
 2. Compare the three descriptions and note how each states its routing trigger
-3. Launch the web IDE and select tutor_agent
+3. Launch the web IDE and select lab08
 
    ```bash
    uv run adk web
@@ -581,7 +581,7 @@ tutor_agent — a coordinator with three subject specialists that routes by topi
 
 Each subject question is answered by the matching specialist, visible as a transfer_to_agent event, and your new fourth specialist is routed to correctly.
 
-> **Note:** The agent source for this lab is in labs/tutor_agent/agent.py — read it alongside these steps. The full lab sheet is at labs/guides/lab-08-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab08/ — read agent.py alongside these steps. The lab sheet for this lab is at labs/lab08/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
@@ -594,18 +594,18 @@ Goal: Chain three agents in a fixed order — collect the journey, research cros
 
 **What you'll build**
 
-transport_agent — a sequential pipeline producing a route report by MRT, bus, taxi, cycling and walking.   (Tools: google-adk, SequentialAgent, LlmAgent, google_search.)
+lab09 — a sequential pipeline producing a route report by MRT, bus, taxi, cycling and walking.   (Tools: google-adk, SequentialAgent, LlmAgent, google_search.)
 
 **Step-by-step**
 
 1. Read the three sub-agents and the SequentialAgent that orders them
 
    ```bash
-   cat transport_agent/agent.py
+   cat lab09/agent.py
    ```
 
 2. Note that each agent's output is passed forward as the next agent's input
-3. Launch the web IDE and select transport_agent
+3. Launch the web IDE and select lab09
 
    ```bash
    uv run adk web
@@ -625,7 +625,7 @@ transport_agent — a sequential pipeline producing a route report by MRT, bus, 
 
 A single journey request produces one report containing all five transport modes plus a recommended fastest route, with the three stages visible in order in the Events tab.
 
-> **Note:** The agent source for this lab is in labs/transport_agent/agent.py — read it alongside these steps. The full lab sheet is at labs/guides/lab-09-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab09/ — read agent.py alongside these steps. The lab sheet for this lab is at labs/lab09/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
@@ -638,21 +638,21 @@ Goal: Use before_model_callback to inspect every user message before it reaches 
 
 **What you'll build**
 
-agent_guardrail — a tool-using agent that intercepts and refuses blocked requests without ever calling the model.   (Tools: google-adk, before_model_callback, CallbackContext, LlmRequest, LlmResponse.)
+lab10 — a tool-using agent that intercepts and refuses blocked requests without ever calling the model.   (Tools: google-adk, before_model_callback, CallbackContext, LlmRequest, LlmResponse.)
 
 **Step-by-step**
 
 1. Read the guardrail callback and find where it returns an LlmResponse
 
    ```bash
-   cat agent_guardrail/agent.py
+   cat lab10/agent.py
    ```
 
 2. Note that returning None allows the call and returning a response blocks it
 3. Run the agent
 
    ```bash
-   uv run adk run agent_guardrail
+   uv run adk run lab10
    ```
 
 4. Send an allowed request and confirm it reaches the model
@@ -675,7 +675,7 @@ agent_guardrail — a tool-using agent that intercepts and refuses blocked reque
 
 The blocked keyword returns the refusal message with no model call in the trace, while normal requests still work — and your added keyword is blocked too.
 
-> **Note:** The agent source for this lab is in labs/agent_guardrail/agent.py — read it alongside these steps. The full lab sheet is at labs/guides/lab-10-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab10/ — read agent.py alongside these steps. The lab sheet for this lab is at labs/lab10/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
@@ -688,21 +688,21 @@ Goal: Attach a Pydantic output_schema so the agent returns a validated Recipe ob
 
 **What you'll build**
 
-agent_structured_output — an agent whose every reply is schema-valid JSON.   (Tools: google-adk, Pydantic BaseModel, output_schema.)
+lab11 — an agent whose every reply is schema-valid JSON.   (Tools: google-adk, Pydantic BaseModel, output_schema.)
 
 **Step-by-step**
 
 1. Read the Recipe model and the output_schema argument
 
    ```bash
-   cat agent_structured_output/agent.py
+   cat lab11/agent.py
    ```
 
 2. Note the typed fields: title, ingredients, cooking_time, servings, instructions
 3. Run the agent
 
    ```bash
-   uv run adk run agent_structured_output
+   uv run adk run lab11
    ```
 
 4. Request a recipe
@@ -725,7 +725,7 @@ agent_structured_output — an agent whose every reply is schema-valid JSON.   (
 
 Every response parses as JSON matching the Recipe schema, cooking_time is an integer, and your added difficulty field is populated.
 
-> **Note:** The agent source for this lab is in labs/agent_structured_output/agent.py — read it alongside these steps. The full lab sheet is at labs/guides/lab-11-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab11/ — read agent.py alongside these steps. The lab sheet for this lab is at labs/lab11/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
@@ -738,27 +738,27 @@ Goal: Connect an ADK agent to a remote MCP server so it can use tools it does no
 
 **What you'll build**
 
-agent_mcp and agent_mcp_sse — agents whose toolset is discovered at runtime from an MCP server.   (Tools: google-adk, McpToolset, StreamableHTTPConnectionParams, SseConnectionParams, n8n MCP server.)
+lab12 — agent.py (StreamableHTTP) and agent_sse.py (SSE), whose toolset is discovered at runtime from an MCP server.   (Tools: google-adk, McpToolset, StreamableHTTPConnectionParams, SseConnectionParams, n8n MCP server.)
 
 **Step-by-step**
 
 1. Read how McpToolset discovers tools from the server URL
 
    ```bash
-   cat agent_mcp/agent.py
+   cat lab12/agent.py
    ```
 
 2. Run the StreamableHTTP MCP agent and read the printed tool list
 
    ```bash
-   uv run python agent_mcp/agent.py
+   uv run python lab12/agent.py
    ```
 
 3. Send a request that exercises one of the discovered tools
 4. Compare the SSE variant and note that only the connection params differ
 
    ```bash
-   cat agent_mcp_sse/agent.py
+   cat lab12/agent.py
    ```
 
 5. Explain when SSE is preferred over StreamableHTTP
@@ -769,7 +769,7 @@ agent_mcp and agent_mcp_sse — agents whose toolset is discovered at runtime fr
 
 The agent prints the tools discovered from the MCP server and successfully invokes one; changing the server URL changes the toolset with no code edit.
 
-> **Note:** The agent source for this lab is in labs/agent_mcp/agent.py — read it alongside these steps. The full lab sheet is at labs/guides/lab-12-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab12/ — read agent.py alongside these steps. The lab sheet for this lab is at labs/lab12/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
@@ -806,42 +806,42 @@ A persistent Chroma collection holding the chunked and embedded air-fryer produc
 1. Inspect the two source PDFs the agent will be grounded in
 
    ```bash
-   ls agent_rag/*.pdf
+   ls lab13/*.pdf
    ```
 
 2. Read the extraction function and note the page number kept as metadata
 
    ```bash
-   cat agent_rag/agent.py
+   cat lab13/agent.py
    ```
 
 3. Identify the chunking rule and the minimum chunk length filter
 4. Run the agent once to trigger ingestion into ChromaDB
 
    ```bash
-   uv run adk run agent_rag
+   uv run adk run lab13
    ```
 
 5. Confirm the persistent vector store was created on disk
 
    ```bash
-   ls agent_rag/chroma_db
+   ls lab13/chroma_db
    ```
 
 6. Explain why chunks shorter than 50 characters are discarded
 7. Change the chunk rule to split on single newlines, delete chroma_db, and re-ingest
 
    ```bash
-   rm -rf agent_rag/chroma_db
+   rm -rf lab13/chroma_db
    ```
 
 8. Compare the resulting chunk count and note the effect on retrieval precision
 
 **Test it**
 
-agent_rag/chroma_db exists and contains a populated air_fryer_docs collection, and you can state how the chunking rule changed the number of stored chunks.
+lab13/chroma_db exists and contains a populated air_fryer_docs collection, and you can state how the chunking rule changed the number of stored chunks.
 
-> **Note:** The agent source for this lab is in labs/agent_rag/agent.py — read it alongside these steps. The full lab sheet is at labs/guides/lab-13-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab13/ — read agent.py alongside these steps. The lab sheet for this lab is at labs/lab13/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
@@ -854,21 +854,21 @@ Goal: Complete the RAG loop: expose the vector search as an ADK tool, let the ag
 
 **What you'll build**
 
-agent_rag — a grounded question-answering agent over the air-fryer manuals with citations.   (Tools: google-adk, ChromaDB, similarity search, Gemini 2.0 Flash.)
+lab14 — a grounded question-answering agent over the air-fryer manuals with citations.   (Tools: google-adk, ChromaDB, similarity search, Gemini 2.0 Flash.)
 
 **Step-by-step**
 
 1. Read the retrieval tool and note how the query is embedded before searching
 
    ```bash
-   cat agent_rag/agent.py
+   cat lab14/agent.py
    ```
 
 2. Note the instruction that requires answers to come only from retrieved context
 3. Run the RAG agent
 
    ```bash
-   uv run adk run agent_rag
+   uv run adk run lab14
    ```
 
 4. Ask a question answerable from the product manual
@@ -901,7 +901,7 @@ agent_rag — a grounded question-answering agent over the air-fryer manuals wit
 
 Both document questions are answered with the correct source and page cited, the out-of-scope question is refused rather than hallucinated, and you can see the retrieved chunks.
 
-> **Note:** The agent source for this lab is in labs/agent_rag/agent.py — read it alongside these steps. The full lab sheet is at labs/guides/lab-14-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab14/ — read agent.py alongside these steps. The lab sheet for this lab is at labs/lab14/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
@@ -914,7 +914,7 @@ Goal: Build a small evaluation set and score your RAG agent on retrieval hit rat
 
 **What you'll build**
 
-A completed RAG evaluation table with a before-and-after comparison for one tuned parameter.   (Tools: agent_rag, ChromaDB, similarity search vs MMR.)
+A completed RAG evaluation table with a before-and-after comparison for one tuned parameter.   (Tools: lab15, ChromaDB, similarity search vs MMR.)
 
 **Step-by-step**
 
@@ -931,7 +931,7 @@ A completed RAG evaluation table with a before-and-after comparison for one tune
 
 A completed evaluation table with before-and-after figures for retrieval hit rate, groundedness and latency, plus a written, evidence-based tuning recommendation.
 
-> **Note:** The agent source for this lab is in labs/agent_rag/agent.py — read it alongside these steps. The full lab sheet is at labs/guides/lab-15-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab15/ — read agent.py alongside these steps. The lab sheet for this lab is at labs/lab15/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
@@ -958,26 +958,26 @@ Goal: Define a five-specialist transport assistant entirely in YAML config files
 
 **What you'll build**
 
-transport_agent_yaml — a root agent with MRT, bus, taxi, bike and walk specialists, all declared in YAML.   (Tools: google-adk YAML config, LlmAgent, Gemini 2.5 Flash.)
+lab16 — a root agent with MRT, bus, taxi, bike and walk specialists, all declared in YAML.   (Tools: google-adk YAML config, LlmAgent, Gemini 2.5 Flash.)
 
 **Step-by-step**
 
 1. List the YAML files and note one file per agent
 
    ```bash
-   ls transport_agent_yaml/
+   ls lab16/
    ```
 
 2. Read the root agent config and its sub_agents config_path list
 
    ```bash
-   cat transport_agent_yaml/root_agent.yaml
+   cat lab16/root_agent.yaml
    ```
 
 3. Read one specialist config and compare its fields to the Python Agent(...) arguments
 
    ```bash
-   cat transport_agent_yaml/mrt_agent.yaml
+   cat lab16/mrt_agent.yaml
    ```
 
 4. Run the YAML-configured agent
@@ -1000,7 +1000,7 @@ transport_agent_yaml — a root agent with MRT, bus, taxi, bike and walk special
 
 All five specialists route correctly, and your sixth agent works after editing YAML only — no Python file was modified.
 
-> **Note:** The agent source for this lab is in labs/transport_agent_yaml/agent.py — read it alongside these steps. The full lab sheet is at labs/guides/lab-16-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab16/ — read its YAML config files alongside these steps. The lab sheet for this lab is at labs/lab16/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
@@ -1013,21 +1013,21 @@ Goal: Wrap the sequential transport agent in a Streamlit chat UI, wiring the asy
 
 **What you'll build**
 
-transport_agent_streamlit — a browser chat application backed by the multi-agent transport workflow.   (Tools: Streamlit, google-adk Runner, InMemorySessionService, asyncio.)
+lab17 — a browser chat application backed by the multi-agent transport workflow.   (Tools: Streamlit, google-adk Runner, InMemorySessionService, asyncio.)
 
 **Step-by-step**
 
 1. Read how the ADK session service is stored in st.session_state
 
    ```bash
-   cat transport_agent_streamlit/app.py
+   cat lab17/app.py
    ```
 
 2. Note that the async Runner is driven through asyncio.run inside the handler
 3. Launch the Streamlit application
 
    ```bash
-   uv run streamlit run transport_agent_streamlit/app.py
+   uv run streamlit run lab17/app.py
    ```
 
 4. Open the app in the browser and submit a journey
@@ -1050,7 +1050,7 @@ transport_agent_streamlit — a browser chat application backed by the multi-age
 
 The Streamlit app answers a journey query, retains history across follow-up turns, and your Clear chat button empties the conversation without restarting the server.
 
-> **Note:** The agent source for this lab is in labs/transport_agent_streamlit/agent.py — read it alongside these steps. The full lab sheet is at labs/guides/lab-17-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab17/ — read agent.py and app.py alongside these steps. The lab sheet for this lab is at labs/lab17/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
@@ -1081,7 +1081,7 @@ A working multi-agent application with at least three agents, at least two tools
 
 A running application with three or more agents and two or more tools, demonstrated live, plus a feasibility assessment stating whether you would recommend production deployment and on what evidence.
 
-> **Note:** This lab has no single agent folder — follow the steps as written. The full lab sheet is at labs/guides/lab-18-*.md. Never commit your .env file or API keys to a public repository.
+> **Note:** This lab is self-contained in labs/lab18/ — read agent.py alongside these steps. The lab sheet for this lab is at labs/lab18/README.md. Never commit your .env file or API keys to a public repository.
 
 ---
 
