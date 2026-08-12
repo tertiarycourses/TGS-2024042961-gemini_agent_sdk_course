@@ -1,6 +1,6 @@
 # Develop Multi AI Agent Applications with Gemini Agent ADK — Learner Guide
 
-**WSQ Course Code:** TGS-2024042961  |  **Conducted by:** Tertiary Infotech Academy Pte Ltd (UEN 201200696W)  |  **Version v1.2 · 11 August 2026**
+**WSQ Course Code:** TGS-2024042961  |  **Conducted by:** Tertiary Infotech Academy Pte Ltd (UEN 201200696W)  |  **Version v1.3 · 12 August 2026**
 
 ## Contents
 
